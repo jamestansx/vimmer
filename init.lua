@@ -11,4 +11,5 @@ do -- boostrap mini.deps
     end
 end
 
-require("mini.deps").setup({})
+require("mini.deps").setup()
+require("me.luarocks").setup()
