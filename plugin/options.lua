@@ -7,6 +7,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
 
 vim.o.confirm = true
+vim.o.colorcolumn = "+1"
 vim.o.exrc = true
 vim.o.mouse = "a"
 vim.o.mousemodel = "extend"
@@ -30,6 +31,7 @@ vim.o.completeopt = "menuone,noselect,fuzzy"
 vim.o.pumheight = 5
 vim.o.wildcharm = (""):byte()
 vim.o.wildmode = "longest:full,full"
+vim.o.wildoptions = "fuzzy,pum,tagfile"
 vim.opt.wildignore:append("*/__pycache__/*,*/node_modules/*")
 
 -- highlight 'number' column instead of indentation
@@ -81,10 +83,10 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- ftplugin may include 'o' option
-vim.api.nvim_create_autocmd("FileType", { command = "setlocal formatoptions-=o" })
+vim.api.nvim_create_autocmd("FileType", { command = "setlocal fo-=o" })
 
 vim.diagnostic.config({
     severity_sort = true,
     jump = { float = true },
-    sign = { severity = { min = 'WARN', max = 'ERROR' } },
+    signs = { severity = { min = 'WARN', max = 'ERROR' } },
 })
