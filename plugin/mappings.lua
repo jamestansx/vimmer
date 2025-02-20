@@ -20,5 +20,26 @@ vim.keymap.set("n", "gJ", "mzgJ`z")
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
+-- home row
+vim.keymap.set("", "H", "^")
+vim.keymap.set("", "L", "$")
+
+do -- smart jk (wrap)
+    local mov = function(key)
+        local gkey = "g" .. key
+        return function()
+            local count = vim.v.count > 0
+            local mode = vim.fn.mode(1):sub(0,1) == "no"
+            return (count or mode) and key or gkey
+        end
+    end
+
+    vim.keymap.set({ "n", "x" }, "j", mov("j"), { expr = true })
+    vim.keymap.set({ "n", "x" }, "k", mov("k"), { expr = true })
+end
+
+-- select last inserted text
+vim.keymap.set("n", "gV", "`[v`]")
+
 -- yank/paste
 vim.keymap.set("x", "Y", '"+y')
