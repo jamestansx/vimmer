@@ -10,7 +10,7 @@ local default_opts = {
 }
 
 M.setup = function()
-    assert(vim.fn.executable("luarocks") == 1)
+    assert(vim.fn.executable("luarocks") == 1, "luarocks executable not found")
 
     local path = ("%s/share/lua/%s"):format(tree, lua_version)
     local cpath = ("%s/lib/lua/%s"):format(tree, lua_version)
