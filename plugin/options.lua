@@ -85,7 +85,8 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- ftplugin may include 'o' option
-vim.api.nvim_create_autocmd("FileType", { command = "setlocal fo-=o" })
+local augroup = vim.api.nvim_create_augroup("me.options", { clear = true })
+vim.api.nvim_create_autocmd("FileType", { group = augroup, command = "setlocal fo-=o" })
 
 vim.diagnostic.config({
     severity_sort = true,
