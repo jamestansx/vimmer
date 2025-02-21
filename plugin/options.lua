@@ -13,10 +13,12 @@ vim.o.mouse = "a"
 vim.o.mousemodel = "extend"
 vim.o.selection = "old" -- don't select past line
 vim.o.shada = "'100,<50,s10,:100,/100,@100,h,r/tmp"
+vim.o.synmaxcol = 200
 vim.o.termguicolors = true
 vim.o.undofile = true
 vim.o.virtualedit = "block"
 vim.opt.isfname:append("@-@")
+-- set includeexpr=substitute(v:fname,'^[^\/]*/','','')
 
 -- editing
 vim.o.jumpoptions = "clean,stack,view"
