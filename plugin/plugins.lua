@@ -37,3 +37,22 @@ now(function()
         end,
     })
 end)
+
+later(function()
+    vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
+    vim.lsp.log.set_format_func(vim.inspect)
+end)
+now(function()
+    local augroup = vim.api.nvim_create_augroup("me.lsp", { clear = true })
+    vim.api.nvim_create_autocmd("LspAttach", {
+        group = augroup,
+        callback = function(args)
+        end,
+    })
+
+    vim.lsp.config("*", {
+        root_markers = { ".git" },
+    })
+
+    vim.lsp.enable("rust_analyzer")
+end)
