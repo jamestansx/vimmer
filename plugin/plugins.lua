@@ -63,3 +63,40 @@ now(function()
 
     vim.lsp.enable("rust_analyzer")
 end)
+
+-- auto-completion
+later(function()
+    add({ source = "Saghen/blink.cmp", checkout = "v0.12.4" })
+
+    require("blink.cmp").setup({
+        keymap = {
+            preset = "none",
+            ["<c-n>"] = { "show", "select_next" },
+            ["<c-p>"] = { "show", "select_prev" },
+            ["<c-space>"] = { "show", "show_documentation", "hide_documentation" },
+            ["<c-e>"] = { "hide", "fallback" },
+            ["<c-y>"] = { "select_and_accept", "fallback" },
+            ["<cr>"] = { "accept", "fallback" },
+            ["<tab>"] = { "snippet_forward", "fallback" },
+            ["<s-tab>"] = { "snippet_backward", "fallback" },
+            ["<c-b>"] = { "scroll_documentation_up", "fallback" },
+            ["<c-f>"] = { "scroll_documentation_down", "fallback" },
+            ["<c-s>"] = { "show_signature", "hide_signature", "fallback" },
+        },
+        cmdline = { enabled = false },
+        completion = {
+            list = {
+                selection = {
+                    preselect = false,
+                    auto_insert = false,
+                },
+            },
+            menu = { max_height = 5 },
+            ghost_text = { enabled = true },
+        },
+        signature = {
+            enabled = true,
+            window = { show_documentation = false },
+        },
+    })
+end)
