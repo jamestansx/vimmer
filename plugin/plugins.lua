@@ -62,6 +62,7 @@ now(function()
     })
 
     vim.lsp.enable("rust_analyzer")
+    vim.lsp.enable("tsserver")
 end)
 
 -- auto-completion
