@@ -1,4 +1,4 @@
-vim.lsp.config.rust_analyzer = {
+vim.lsp.config["rust_analyzer"] = {
     cmd = { "rust-analyzer" },
     filetypes = { "rust" },
     root_markers = { "Cargo.toml" },
@@ -6,6 +6,15 @@ vim.lsp.config.rust_analyzer = {
     capabilities = {
         experimental = {
             serverStatusNotification = true,
+        },
+    },
+    settings = {
+        ["rust-analyzer"] = {
+            check = {
+                command = "clippy",
+                extraArgs = { "--no-deps" },
+            },
+            checkOnSave = true,
         },
     },
     before_init = function(init_params, config)

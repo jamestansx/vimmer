@@ -38,17 +38,24 @@ now(function()
     })
 end)
 
-later(function()
-    vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
-    vim.lsp.log.set_format_func(vim.inspect)
-end)
+-- lspconfig
 now(function()
     local augroup = vim.api.nvim_create_augroup("me.lsp", { clear = true })
     vim.api.nvim_create_autocmd("LspAttach", {
         group = augroup,
         callback = function(args)
+            local buf = args.buf
+
+            vim.keymap.set("n", "grq", vim.diagnostic.setqflist, { buffer = buf })
+            vim.keymap.set("n", "<bs>", function()
+                local enabled = not vim.lsp.inlay_hint.is_enabled()
+                vim.lsp.inlay_hint.enable(enabled)
+            end, { buffer = buf })
         end,
     })
+
+    vim.lsp.log.set_format_func(vim.inspect)
+    vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
 
     vim.lsp.config("*", {
         root_markers = { ".git" },

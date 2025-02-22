@@ -1,3 +1,4 @@
 return {
-  ["mini.deps"] = "92cee41eb5e9f195f132423ea32bd4ae6f0c0ec5"
+  ["mini.deps"] = "92cee41eb5e9f195f132423ea32bd4ae6f0c0ec5",
+  ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257"
 }
