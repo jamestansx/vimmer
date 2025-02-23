@@ -101,3 +101,19 @@ later(function()
         },
     })
 end)
+
+-- formatting
+later(function()
+    add("stevearc/conform.nvim")
+
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+    require("conform").setup({
+        log_level = vim.log.levels.ERROR,
+        formatters_by_ft = {
+            dart = { "dart_format", lsp_format = "fallback" },
+            rust = { "rustfmt" },
+            ["_"] = { "trim_whitespace" },
+        },
+    })
+end)

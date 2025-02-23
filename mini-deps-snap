@@ -1,5 +1,6 @@
 return {
   ["blink.cmp"] = "18b352d12b35bca148427b607098df14b75a218f",
+  ["conform.nvim"] = "a6f5bdb78caa305496357d17e962bbc4c0b392e2",
   ["mini.deps"] = "92cee41eb5e9f195f132423ea32bd4ae6f0c0ec5",
   ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257"
 }
