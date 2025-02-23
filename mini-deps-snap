@@ -1,6 +1,8 @@
 return {
   ["blink.cmp"] = "18b352d12b35bca148427b607098df14b75a218f",
   ["conform.nvim"] = "a6f5bdb78caa305496357d17e962bbc4c0b392e2",
+  ["leap.nvim"] = "8b826a9fc766bffd14288aee01847cb0d6c6c383",
   ["mini.deps"] = "92cee41eb5e9f195f132423ea32bd4ae6f0c0ec5",
-  ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257"
+  ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257",
+  ["vim-repeat"] = "65846025c15494983dafe5e3b46c8f88ab2e9635"
 }

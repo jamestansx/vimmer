@@ -117,3 +117,29 @@ later(function()
         },
     })
 end)
+
+now(function()
+    add({
+        source = "ggandor/leap.nvim",
+        depends = { "tpope/vim-repeat" },
+    })
+
+    local leap = require("leap")
+    local user = require("leap.user")
+
+    user.set_repeat_keys("<enter>", "<s-enter>", { relative_directions = true })
+    leap.opts.equivalence_classes = { " \t\r\n", "({[", ")}]", "'\"`" }
+    leap.opts.special_keys = {
+        next_target = "<enter>",
+        prev_target = "<s-enter>",
+        next_group = "<space>",
+        prev_group = "<s-space>",
+    }
+
+    vim.keymap.set({"n", "x", "o"}, "s", function() leap.leap({}) end)
+    vim.keymap.set({"n", "x", "o"}, "S", function() leap.leap({ backward = true }) end)
+    vim.keymap.set({"n", "x", "o"}, "gs", function() require("leap.remote").action() end)
+    vim.keymap.set({"n", "x", "o"}, "gS", function() leap.leap({ target_windows = user.get_enterable_windows() }) end)
+
+    vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+end)
