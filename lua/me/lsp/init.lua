@@ -1,5 +1,6 @@
 local M = {}
 
+-- TODO: use ++all args to select all lsp clients (not only from the current buffer)
 local get_clients_from_names = function(names)
     if #names == 0 then
         return vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })

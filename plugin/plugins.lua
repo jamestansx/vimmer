@@ -4,7 +4,6 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 now(function()
     vim.cmd("packadd! cfilter")
     vim.cmd("packadd! termdebug")
-    vim.cmd("colorscheme lunaperche")
 end)
 
 now(function()
@@ -53,6 +52,8 @@ now(function()
             end, { buffer = buf })
         end,
     })
+
+    require("me.lsp.status").setup()
 
     vim.lsp.log.set_format_func(vim.inspect)
     vim.lsp.log.set_level(vim.lsp.log.levels.ERROR)
@@ -119,7 +120,7 @@ later(function()
     })
 end)
 
-now(function()
+later(function()
     add({
         source = "ggandor/leap.nvim",
         depends = { "tpope/vim-repeat" },
