@@ -40,7 +40,7 @@ end
 
 --- Wrapper for MiniDeps.add that injects `luarocks build` to hooks
 M.add = function(spec, opts)
-    vim.validate("spec", spec, "table")
+    if type(spec) == "string" then spec = { source = spec } end
 
     local hooks = spec["hooks"]
     local post_install = hooks and hooks["post_install"]
