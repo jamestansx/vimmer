@@ -1,4 +1,3 @@
-local rocks = require("me.luarocks")
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 now(function()
