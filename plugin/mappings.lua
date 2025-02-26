@@ -22,6 +22,10 @@ vim.keymap.set("n", "#", "#zzzv")
 -- split (un-join) line
 vim.keymap.set("n", "gj", "i<c-j><esc>k$")
 
+-- search within visual selection
+vim.keymap.set("x", "/", "<esc>/\\%V")
+vim.keymap.set("x", "?", "<esc>?\\%V")
+
 -- TODO: join line remove spaces
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "gJ", "mzgJ`z")
