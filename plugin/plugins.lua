@@ -1,6 +1,6 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
-now(function()
+later(function()
     vim.cmd("packadd! cfilter")
     vim.cmd("packadd! termdebug")
 end)
@@ -128,11 +128,11 @@ later(function()
     local leap = require("leap")
     local user = require("leap.user")
 
-    user.set_repeat_keys("<enter>", "<s-enter>", { relative_directions = true })
+    user.set_repeat_keys("<tab>", "<s-tab>", { relative_directions = true })
     leap.opts.equivalence_classes = { " \t\r\n", "({[", ")}]", "'\"`" }
     leap.opts.special_keys = {
-        next_target = "<enter>",
-        prev_target = "<s-enter>",
+        next_target = "<tab>",
+        prev_target = "<s-tab>",
         next_group = "<space>",
         prev_group = "<s-space>",
     }
@@ -143,4 +143,16 @@ later(function()
     vim.keymap.set({"n", "x", "o"}, "gS", function() leap.leap({ target_windows = user.get_enterable_windows() }) end)
 
     vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+end)
+
+later(function()
+    add("echasnovski/mini.pick")
+    require("mini.pick").setup({ options = { content_from_bottom = true } })
+
+    vim.ui.select = MiniPick.ui_select
+
+    -- TODO: pick files with `proximity-sort`
+    vim.keymap.set("n", "<leader>f", "<cmd>Pick files<cr>")
+    vim.keymap.set("n", "<leader>g", "<cmd>Pick grep_live<cr>")
+    vim.keymap.set("n", "yop", "<cmd>Pick resume<cr>")
 end)
