@@ -42,13 +42,13 @@ local spin = function()
     local t = config.update_ms
     status.timer:start(t, t, vim.schedule_wrap(function()
         if not status.running then
-            status.timer:stop()
             vim.defer_fn(function()
                 -- New progress update, don't clear the status
                 if status.running then return end
                 status.message = ""
                 vim.cmd.redrawstatus()
             end, 1000)
+            status.timer:stop()
         end
 
         local idx = status.spinner_idx
@@ -57,7 +57,7 @@ local spin = function()
     end))
 end
 
-M.get_progress = function(data)
+M.get_progress = function()
     if status.message == "" then return "" end
 
     local icon = status.running and config.icons.spinners[status.spinner_idx] or config.icons.done
