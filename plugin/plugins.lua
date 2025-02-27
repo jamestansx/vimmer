@@ -157,6 +157,7 @@ later(function()
     vim.keymap.set("n", "yop", "<cmd>Pick resume<cr>")
 end)
 
+now(function() vim.go.statusline = require("me.statusline").setup() end)
 later(function()
     add("echasnovski/mini-git")
     require("mini.git").setup()
