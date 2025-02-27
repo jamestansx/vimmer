@@ -156,3 +156,8 @@ later(function()
     vim.keymap.set("n", "<leader>g", "<cmd>Pick grep_live<cr>")
     vim.keymap.set("n", "yop", "<cmd>Pick resume<cr>")
 end)
+
+later(function()
+    add("echasnovski/mini-git")
+    require("mini.git").setup()
+end)
