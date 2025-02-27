@@ -9,15 +9,14 @@ local status = {
 
 local augroup = vim.api.nvim_create_augroup("me.lsp.status", { clear = true })
 local config = {
-    max_message_width = 20,
+    max_message_width = 30,
     update_ms = 100,
     icons = {
-        spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+        spinners = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
         done = "✔",
     }
 }
 
--- [<client_name>] (<percent>%) <title>: <message>
 local format_progress = function(name, value)
     local percent = value.percentage
     local title = value.title or ""
@@ -30,10 +29,10 @@ local format_progress = function(name, value)
     end
 
     if percent then
-        title = ("(%3d%%) %s"):format(percent, title)
+        title = ("%s (%3d%%)"):format(title, percent)
     end
 
-    return ("[%s] %s%s%s"):format(name, title, sep, message)
+    return ("%s%s%s [%s]"):format(message, sep, title, name)
 end
 
 local spin = function()
@@ -61,7 +60,7 @@ M.get_progress = function()
     if status.message == "" then return "" end
 
     local icon = status.running and config.icons.spinners[status.spinner_idx] or config.icons.done
-    return ("%s %s"):format(icon, status.message)
+    return ("%s %s"):format(status.message, icon)
 end
 
 M.setup = function()
@@ -92,7 +91,6 @@ M.setup = function()
             local name = vim.lsp.get_client_by_id(id).name
 
             status.message = format_progress(name, value)
-            vim.cmd.redrawstatus()
 
             local is_done = value.kind == "end"
             status.running = not is_done
