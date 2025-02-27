@@ -36,7 +36,7 @@ end
 -- ● lua utf-8[unix]
 M.fileinfo = function()
     local filetype = vim.bo.filetype
-    local sep = filetype and " " or ""
+    local sep = filetype ~= "" and " " or ""
     local fileencoding = vim.bo.fileencoding
     local fileformat = vim.bo.fileformat
     local icon = state.lsp_attached and config.lsp_icon or ""
