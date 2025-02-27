@@ -6,6 +6,10 @@ later(function()
 end)
 
 now(function()
+    vim.go.statusline = require("me.statusline").setup()
+end)
+
+now(function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
@@ -157,8 +161,15 @@ later(function()
     vim.keymap.set("n", "yop", "<cmd>Pick resume<cr>")
 end)
 
-now(function() vim.go.statusline = require("me.statusline").setup() end)
 later(function()
     add("echasnovski/mini-git")
     require("mini.git").setup()
+
+    add("mbbill/undotree")
+    vim.g.undotree_HelpLine = 0
+    vim.g.undotree_WindowLayout = 2
+    vim.g.undotree_ShortIndicators = 1
+    vim.g.undotree_SetFocusWhenToggle = 1
+
+    vim.keymap.set("n", "you", vim.cmd.UndotreeToggle)
 end)
