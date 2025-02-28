@@ -76,7 +76,7 @@ end)
 
 -- auto-completion
 later(function()
-    add({ source = "Saghen/blink.cmp", checkout = "v0.12.4" })
+    add({ source = "Saghen/blink.cmp", checkout = "v0.13.1" })
 
     require("blink.cmp").setup({
         keymap = {
@@ -93,7 +93,6 @@ later(function()
             ["<c-f>"] = { "scroll_documentation_down", "fallback" },
             ["<c-s>"] = { "show_signature", "hide_signature", "fallback" },
         },
-        cmdline = { enabled = false },
         completion = {
             list = {
                 selection = {
