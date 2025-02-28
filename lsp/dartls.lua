@@ -1,8 +1,16 @@
 local analysis_excluded_folders, flutter_sdk_root
 local dart_bin = "dart"
 
+-- Path discovery performance is slow if searching downwards
+-- so instead searching upward from the buffer path itself
 if vim.fn.executable("fvm") == 1 then
-    local fvm_dir = vim.fs.find(".fvm", { limit = 1, type = "directory" })[1]
+    local buf_path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+    local fvm_dir = vim.fs.find(".fvm", {
+        path = buf_path,
+        limit = 1,
+        type = "directory",
+        upward = true,
+    })[1]
 
     if fvm_dir then
         flutter_sdk_root = vim.uv.fs_realpath(table.concat({ fvm_dir, "flutter_sdk" }, "/"))
