@@ -6,6 +6,10 @@ later(function()
 end)
 
 now(function()
+    add("wnkz/monoglow.nvim")
+    require("monoglow").setup({ style = "lack", transparent = true })
+    vim.cmd("colorscheme monoglow")
+
     vim.go.statusline = require("me.statusline").setup()
 end)
 
@@ -172,4 +176,19 @@ later(function()
     vim.g.undotree_SetFocusWhenToggle = 1
 
     vim.keymap.set("n", "you", vim.cmd.UndotreeToggle)
+end)
+
+later(function()
+    add({
+        source = "nvim-neorg/neorg",
+        depends = {
+            "nvim-treesitter/nvim-treesitter",
+            "pysan3/pathlib.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-neorg/lua-utils.nvim",
+            "nvim-neotest/nvim-nio",
+        },
+    })
+    require("neorg").setup()
 end)
