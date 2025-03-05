@@ -19,7 +19,7 @@ M.gitinfo = function()
     local summary = vim.b.minigit_summary_string or ""
     if summary == "" then return "" end
 
-    return ("  %s "):format(summary)
+    return (" %s"):format(summary)
 end
 
 -- "E1 W1 I1"
@@ -30,7 +30,7 @@ end
 
 -- lua/me/statusline.lua [Help][+][RO]
 M.filename = function()
-    return " %f%( %h%w%m%r%) "
+    return "%f%( %h%w%m%r%)"
 end
 
 -- ● lua utf-8[unix]
@@ -41,12 +41,12 @@ M.fileinfo = function()
     local fileformat = vim.bo.fileformat
     local icon = state.lsp_attached and config.lsp_icon or ""
 
-    return (" %s%s%s%s[%s] "):format(icon, filetype, sep, fileencoding, fileformat)
+    return ("%s%s%s%s[%s]"):format(icon, filetype, sep, fileencoding, fileformat)
 end
 
 -- 23,3 (All)
 M.ruler = function()
-    return " %-6.(%l,%v%) (%P) "
+    return "%-6.(%l,%v%) (%P)"
 end
 
 local diag_cb = function(args)
@@ -67,22 +67,31 @@ local diag_cb = function(args)
             t[#t + 1] = ("%%#%s#%s%s%%*"):format(v.hl, v.sign, c)
         end
     end
-    state.diagcount[buf] = #t > 0 and " " .. table.concat(t, " ") .. " " or nil
+    state.diagcount[buf] = #t > 0 and table.concat(t, " ")  or nil
 
     if vim.api.nvim_get_current_buf() == buf then
         vim.cmd.redrawstatus()
     end
 end
 
-M.statusline = function()
-    return table.concat({
-        M.filename(), M.diagcount(), M.gitinfo(),
-        "%=", "%{v:lua.require'me.lsp.status'.get_progress()}",
-        M.fileinfo(), M.ruler(),
-    }, "│")
+local component = function(str)
+    if str == "" then return "" end
+    return (" %s "):format(str)
 end
 
--- |  main (??) | lua/me/statusline.lua [Help][+][RO] | E1 W1 I1 | %= | progress | ✪ lua utf-8[unix] | 23,3 (All) |
+M.statusline = function()
+    local comp = {
+        M.filename(), M.gitinfo(), M.diagcount(),
+        "%=",
+        "%{v:lua.require'me.lsp.status'.get_progress()}",
+        M.fileinfo(), M.ruler()
+    }
+
+    return table.concat(vim.tbl_map(function(v)
+        return component(v)
+    end, comp, ""))
+end
+
 M.setup = function()
     local augroup = vim.api.nvim_create_augroup("me.statusline", { clear = true })
     vim.api.nvim_create_autocmd("DiagnosticChanged", { group = augroup, callback = diag_cb })
