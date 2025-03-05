@@ -1,6 +1,6 @@
 return {
   ["blink.cmp"] = "dcda20d3aa345025699a920c45b0a0603551f41d",
-  ["conform.nvim"] = "a6f5bdb78caa305496357d17e962bbc4c0b392e2",
+  ["conform.nvim"] = "db8a4a9edb217067b1d7a2e0362c74bfe9cc944d",
   ["leap.nvim"] = "346a16ef942635a8ca5ff92e603d07e7e8be6cbe",
   ["lua-utils.nvim"] = "e565749421f4bbb5d2e85e37c3cef9d56553d8bd",
   ["mini-git"] = "05f9ec07534ce8e2bf797c05c0a8bd826d9d24a2",
@@ -10,10 +10,10 @@ return {
   neorg = "53714b1783d4bb5fa154e2a5428b086fb5f3d8a5",
   ["nui.nvim"] = "53e907ffe5eedebdca1cd503b00aa8692068ca46",
   ["nvim-nio"] = "21f5324bfac14e22ba26553caf69ec76ae8a7662",
-  ["nvim-treesitter"] = "1adcd5711929e44d1bc9e59fbf7d94656cf6d389",
+  ["nvim-treesitter"] = "55c5c762fee2e813b4e43bbfaf5b91d182bd2875",
   ["pathlib.nvim"] = "57e5598af6fe253761c1b48e0b59b7cd6699e2c1",
   ["plenary.nvim"] = "857c5ac632080dba10aae49dba902ce3abf91b35",
-  undotree = "2556c6800b210b2096b55b66e74b4cc1d9ebbe4f",
+  undotree = "86df4075f0e24ebae8b6190621a48b1f0eb488d3",
   ["vim-dirvish"] = "5d1d1ef45c6161af14c7d3d3097057e8fb5ac257",
   ["vim-repeat"] = "65846025c15494983dafe5e3b46c8f88ab2e9635"
 }
