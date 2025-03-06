@@ -189,5 +189,20 @@ later(function()
             "nvim-neotest/nvim-nio",
         },
     })
+
+    -- HACK: yikes! Neorg setup after ftplugin event,
+    -- hence start treesitter in its user autocommand.
+    vim.api.nvim_create_autocmd("User", {
+        group = augroup,
+        pattern = "NeorgStarted",
+        callback = function(args)
+            if vim.bo[args.buf].filetype ~= "norg" then return end
+            vim.schedule(function()
+                if vim.treesitter.language.add("norg") then
+                    vim.treesitter.start()
+                end
+            end)
+        end,
+    })
     require("neorg").setup()
 end)
