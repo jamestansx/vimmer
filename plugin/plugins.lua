@@ -177,6 +177,9 @@ later(function()
     vim.keymap.set("n", "you", vim.cmd.UndotreeToggle)
 end)
 
+-- FIXME: lazy load neorg causes issues such as indentation does not work
+-- until trying to run a Neorg command (`Neorg module list`)... But loading it
+-- instantly would lead to slow startup time.. It's a catch-22 situation.
 later(function()
     add({
         source = "nvim-neorg/neorg",
